@@ -23,7 +23,7 @@ commands:
   newshoutsmall:
     description: small shout command
     permission: bozokits.newshoutsmall
-  newshoutsmallol:
+  newshoutsmalllol:
     description: funny small shout command
     permission: bozokits.newshoutsmalllol
   potionshop:
