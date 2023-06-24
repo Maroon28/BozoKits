@@ -21,13 +21,14 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import static net.bozokits.utils.MessageUtils.getMessage;
 import static net.kyori.adventure.text.minimessage.tag.resolver.Placeholder.component;
 
 public class PlayerListener implements Listener {
-    private final Map<Player, Long> cooldowns = new HashMap<>();
-    private final long cooldownDuration = 10 * 1000; // 10 seconds in milliseconds
+    private final Map<UUID, Long> cooldowns = new HashMap<>();
+
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         Component message;
@@ -44,6 +45,7 @@ public class PlayerListener implements Listener {
     public void onLeave(PlayerQuitEvent event) {
         Component message = getMessage("quit-message", component("player", event.getPlayer().name()));
         event.quitMessage(message);
+        cooldowns.remove(event.getPlayer().getUniqueId());
     }
 
     @EventHandler
@@ -53,6 +55,7 @@ public class PlayerListener implements Listener {
         if (killer == null)
             return;
         CommandUtils.runCommands("on-kill", killer);
+        cooldowns.remove(victim.getUniqueId());
     }
     @EventHandler
     public void onPlayerCommandPreprocess(PlayerCommandPreprocessEvent event) {
@@ -125,10 +128,12 @@ public class PlayerListener implements Listener {
     }
 
     private boolean hasCooldown(Player player) {
-        return cooldowns.containsKey(player) && System.currentTimeMillis() - cooldowns.get(player) < cooldownDuration;
+        // 10 seconds in milliseconds
+        long cooldownDuration = 10 * 1000;
+        return cooldowns.containsKey(player.getUniqueId()) && System.currentTimeMillis() - cooldowns.get(player) < cooldownDuration;
     }
 
     private void setCooldown(Player player) {
-        cooldowns.put(player, System.currentTimeMillis());
+        cooldowns.put(player.getUniqueId(), System.currentTimeMillis());
     }
 }
