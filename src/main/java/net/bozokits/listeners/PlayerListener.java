@@ -28,13 +28,14 @@ import static net.kyori.adventure.text.minimessage.tag.resolver.Placeholder.comp
 
 public class PlayerListener implements Listener {
     private final Map<UUID, Long> cooldowns = new HashMap<>();
+    private int totalPlayerCount;
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         Component message;
         if (event.getPlayer().hasPlayedBefore()) {
-            int totalCount = Bukkit.getOfflinePlayers().length + Bukkit.getOnlinePlayers().size() + 1;
-            message = getMessage("first-join-message", component("player", event.getPlayer().name()), component("unique-players", Component.text(totalCount)));
+            totalPlayerCount = getTotalCount() + 1;
+            message = getMessage("first-join-message", component("player", event.getPlayer().name()), component("unique-players", Component.text(totalPlayerCount)));
         } else {
             message = getMessage("join-message", component("player", event.getPlayer().name()));
         }
@@ -135,5 +136,11 @@ public class PlayerListener implements Listener {
 
     private void setCooldown(Player player) {
         cooldowns.put(player.getUniqueId(), System.currentTimeMillis());
+    }
+    private int getTotalCount() {
+        if (totalPlayerCount == 0) {
+            return Bukkit.getOfflinePlayers().length;
+        }
+        return totalPlayerCount;
     }
 }
