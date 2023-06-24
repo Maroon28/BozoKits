@@ -1,6 +1,6 @@
 name: BozoKitsUtils
 version: '${project.version}'
-main: net.untitled.BozoKitsUtils
+main: net.bozokits.BozoKitsUtils
 api-version: 1.19
 commands:
   ip:
