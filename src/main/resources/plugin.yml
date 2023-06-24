@@ -19,10 +19,13 @@ commands:
       - serverrules
   newshout:
     description: shout command
+    permission: bozokits.newshout
   newshoutsmall:
     description: small shout command
+    permission: bozokits.newshoutsmall
   newshoutsmallol:
     description: funny small shout command
+    permission: bozokits.newshoutsmalllol
   potionshop:
     aliases:
       - potshop
@@ -46,18 +49,22 @@ commands:
     description: afk pool join
   rngtest:
     description: rng test
+    permission: bozokits.rngtest
   arena-reset:
     description: arena reset
+    permission: poglords.resetarena
   daily:
     description: daily reward
   randomkit:
     description: gives a random kit
+    permission: bozokits.randomkit
   nightvision:
     description: gives permanent night vision
   discordboughtlegendarycrate:
     description: legendary crate buy
   keyall:
     description: gives keys to everyone
+    permission: poglords.keyall.daily
   discordlegendarycrate:
     description: legendary crate open
   discordbozocrate:
@@ -66,23 +73,33 @@ commands:
     description: teleports to a random shulker room
   eventjoinwhite:
     description: event join message
+    permission: poglords.eventjoinwhite
   eventjoinwhitechance:
     description: event join message
+    permission: poglords.eventjoinwhitechance
   eventjoinred:
     description: event join message
+    permission: poglords.eventjoinred
   eventjoinredchance:
     description: event join message
+    permission: poglords.eventjoinredchance
   eventyoukilled:
     description: event title
+    permission: bozokits.eventadmin
   eventdied:
     description: event title
+    permission: bozokits.eventadmin
   eventwin:
     description: event title
+    permission: bozokits.eventadmin
   eventwinner:
     description: event winner commands
+    permission: bozokits.eventadmin
   freerank:
     description: gives free rank every 24h
   luckydip:
     description: lucky dip
+    permission: bozokits.luckydip
   boosting:
     description: boosting reward
+    permission: bozokits.boosting
