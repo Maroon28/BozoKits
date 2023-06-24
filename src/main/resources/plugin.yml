@@ -1,0 +1,88 @@
+name: BozoKitsUtils
+version: '${project.version}'
+main: net.untitled.BozoKitsUtils
+api-version: 1.19
+commands:
+  ip:
+    description: Server ip message
+  help:
+    description: help command
+    aliases:
+      - helpme
+  discord:
+    description: discord invite
+  store:
+    description: server store
+  rules:
+    description: rules
+    aliases:
+      - serverrules
+  newshout:
+    description: shout command
+  newshoutsmall:
+    description: small shout command
+  newshoutsmallol:
+    description: funny small shout command
+  potionshop:
+    aliases:
+      - potshop
+  foodshop:
+    description: food shop
+  coinshop:
+    description: coin shop
+  boomshop:
+    description: boom shop
+  miscshop:
+    description: misc shop
+  specialshop:
+    description: special shop
+  bookshop:
+    description: book shop
+  xpshop:
+    description: xp shop
+  afkpool6969leave:
+    description: afk pool leave
+  afkpool6969join:
+    description: afk pool join
+  rngtest:
+    description: rng test
+  arena-reset:
+    description: arena reset
+  daily:
+    description: daily reward
+  randomkit:
+    description: gives a random kit
+  nightvision:
+    description: gives permanent night vision
+  discordboughtlegendarycrate:
+    description: legendary crate buy
+  keyall:
+    description: gives keys to everyone
+  discordlegendarycrate:
+    description: legendary crate open
+  discordbozocrate:
+    description: bozo crate
+  shulker:
+    description: teleports to a random shulker room
+  eventjoinwhite:
+    description: event join message
+  eventjoinwhitechance:
+    description: event join message
+  eventjoinred:
+    description: event join message
+  eventjoinredchance:
+    description: event join message
+  eventyoukilled:
+    description: event title
+  eventdied:
+    description: event title
+  eventwin:
+    description: event title
+  eventwinner:
+    description: event winner commands
+  freerank:
+    description: gives free rank every 24h
+  luckydip:
+    description: lucky dip
+  boosting:
+    description: boosting reward
