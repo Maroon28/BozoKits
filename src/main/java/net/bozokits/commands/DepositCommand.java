@@ -1,6 +1,7 @@
 package net.bozokits.commands;
 
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -18,10 +19,15 @@ public class DepositCommand implements TabExecutor {
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
         if (!(commandSender instanceof Player player))
             return true;
+        TextComponent errorText = Component.text("Unknown Argument. Please pick either hand or all", NamedTextColor.RED);
+        if (args.length < 1) {
+            player.sendMessage(errorText);
+            return true;
+        }
         if (args[0].equals("all") || args[0].equals("hand")) {
             player.performCommand("sell " + args[0]);
         } else {
-            player.sendMessage(Component.text("Unknown Argument. Please pick either hand or all", NamedTextColor.RED));
+            player.sendMessage(errorText);
         }
         return true;
     }
