@@ -29,7 +29,7 @@ public class EventWinnerCommand implements CommandExecutor {
         runAsConsole("eco give " + args[0] + " 32");
         runAsConsole("cc give p Ultra 1 " + args[0]);
         for (Player player: Bukkit.getOnlinePlayers()) {
-            MessageUtils.sendMessageList(player, "event-win", Placeholder.component("player", player.name()));
+            MessageUtils.sendMessageList(player, "event-win", Placeholder.component("player", winner.name()));
         }
         return true;
     }
