@@ -2,11 +2,10 @@ package net.bozokits.utils;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.List;
 
-public class MessageAnnounceTask extends BukkitRunnable {
+public class MessageAnnounceTask implements Runnable {
     private int index = 1;
     private final List<String> ANNOUNCEMENTS = MessageUtils.getMessageList("announcements");
     @Override

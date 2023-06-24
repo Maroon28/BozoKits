@@ -27,7 +27,7 @@ public final class BozoKitsUtils extends JavaPlugin {
     }
 
     private void startAnnouncements() {
-        Bukkit.getScheduler().runTaskTimer(this, new MessageAnnounceTask(), 0, getConfig().getInt("announcement-interval"));
+        Bukkit.getScheduler().runTaskTimerAsynchronously(this, new MessageAnnounceTask(), 0, getConfig().getInt("announcement-interval"));
     }
 
     private void registerAllCommands() {
