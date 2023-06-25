@@ -47,6 +47,8 @@ commands:
     description: afk pool leave
   afkpool6969join:
     description: afk pool join
+  afk:
+    description: afk warp command
   rngtest:
     description: rng test
     permission: bozokits.rngtest

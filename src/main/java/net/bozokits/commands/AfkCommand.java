@@ -21,7 +21,7 @@ public class AfkCommand implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
         if (!(commandSender instanceof Player player))
             return true;
-        if (key.equals("none")) {
+        if (key.equals("afk")) {
             CommandUtils.runAsConsole("warp afk " + player);
             player.sendMessage(MessageUtils.getMessage("afk-pool"));
             return true;

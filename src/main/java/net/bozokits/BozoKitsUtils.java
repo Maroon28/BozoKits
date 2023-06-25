@@ -88,7 +88,7 @@ public final class BozoKitsUtils extends JavaPlugin {
         }
     }
     private void registerAFKCommands() {
-        String[] keys = new String[]{"afkpool6969join", "afkpool6969leave", "none"};
+        String[] keys = new String[]{"afkpool6969join", "afkpool6969leave", "afk"};
         for (String key: keys) {
             getCommand(key).setExecutor(new AfkCommand(key));
         }
