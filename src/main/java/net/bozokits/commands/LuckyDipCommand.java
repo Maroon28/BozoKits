@@ -25,7 +25,7 @@ public class LuckyDipCommand implements CommandExecutor {
             sender.sendMessage("Invalid Player!");
             return true;
         }
-        CommandUtils.runAsConsole("kit herorank1d " + player);
+        CommandUtils.runAsConsole("kit herorank1d " + player.getName());
         MessageUtils.sendMessageList(player, "lucky-dip");
         return false;
     }

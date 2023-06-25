@@ -10,7 +10,7 @@
     <packaging>jar</packaging>
 
     <name>BozoKitsUtils</name>
-
+    <description>Bozo kits additions replacement</description>
     <properties>
         <java.version>16</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

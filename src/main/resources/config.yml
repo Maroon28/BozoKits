@@ -5,7 +5,7 @@ announcements:
     - ' '
     - '<color:#5865F2><bold>Make sure to join our discord!'
     - ' '
-    - '<color:#5865F2><bold>discord.gg/taQMwHdUQE'
+    - "<white><click:open_url:'https://discord.gg/taQMwHdUQE'>discord.gg/taQMwHdUQE</click>"
     - ' '
     - ' '
   2:
@@ -21,7 +21,7 @@ announcements:
     - ' '
     - '<green><bold>Make sure to visit our store!'
     - ' '
-    - '<green>store.bozokits.net'
+    - "<green><click:open_url:'https://store.bozokits.net'>store.bozokits.net</click>"
     - ' '
     - ' '
   4:
@@ -36,7 +36,7 @@ announcements:
     - '<color:#5865F2>Just link your mc account on our discord'
     - '<gray>Type /link and join the discord'
     - ' '
-    - '<color:#5865F2>discord.gg/taQMwHdUQE'
+    - "<color:#5865F2><click:open_url:'https://discord.gg/taQMwHdUQE'>discord.gg/taQMwHdUQE</click>"
     - ' '
 commands-on-death:
   - 'kit <random-1-50> <player>'
@@ -50,17 +50,17 @@ commands-anvil-reset:
 shout-command:
   - ' '
   - ' '
-  - '<white>[<gradient:#12c2e9:#f64f59><bold>BOZO KITS</gradient></bold>] <color:#12c2e9><bold><content>'
+  - '<white>[<gradient:#12c2e9:#C471ED:#f64f59><bold>BOZO KITS</gradient>] <color:#12c2e9><bold><content>'
   - ' '
   - ' '
 shoutsmall-command:
-  - '<white>[<gradient:#12c2e9:#f64f59><bold>BOZO KITS</gradient></bold>] <color:#12c2e9><bold><content>'
+  - '<white>[<gradient:#12c2e9:#C471ED:#f64f59><bold>BOZO KITS</gradient>] <color:#12c2e9><bold><content>'
 shoutsmalllol-command:
   - '<color:#12c2e9><red><content>'
 rngtest-command:
   - ' '
   - ' '
-  - '<white>[<gradient:#12c2e9:#f64f59><bold>BOZO KITS</gradient></bold>]<color:#12c2e9><bold> <random-1-80>'
+  - '<white>[<gradient:#12c2e9:#C471ED:#f64f59><bold>BOZO KITS</gradient>]<color:#12c2e9><bold> <random-1-80>'
   - ' '
   - ' '
 event-win:
@@ -89,7 +89,7 @@ discordlegendarycrate:
 lucky-dip:
   - '<green>CONGRATULATIONS!'
   - '<green>You were very lucky & won a free daily hero rank voucher! Check your inventory for it.'
-event-join: '<white>[<gradient:#12c2e9:#f64f59><bold>BOZO KITS</gradient></bold>]<color><bold>/event join'
+event-join: '<white>[<gradient:#12c2e9:#C471ED:#f64f59><bold>BOZO KITS</gradient>]<color><bold> /event join'
 text-commands:
   ip:
     - ' '
@@ -102,9 +102,9 @@ text-commands:
   discord:
     - ' '
     - ' '
-    - '<color:#5865F2><bold>Make sure to join our discord!'
+    - '<color:#5865F2><bold>Make sure to join our discord!</bold>'
     - ' '
-    - '<color:#5865F2>discord.gg/taQMwHdUQE'
+    - "<white><click:open_url:'https://discord.gg/taQMwHdUQE'>discord.gg/taQMwHdUQE</click>"
     - ' '
     - ' '
   store:
@@ -112,7 +112,7 @@ text-commands:
     - ' '
     - '<green><bold>Make sure to visit our store!'
     - ' '
-    - '<green>store.bozokits.net'
+    - "<green><click:open_url:'https://store.bozokits.net'>store.bozokits.net</click>"
     - ' '
     - ' '
   help:
@@ -169,10 +169,21 @@ text-commands:
     - ' '
     - '<green><bold>Make sure to visit our store!'
     - ' '
-    - '<green>store.bozokits.net'
+    - "<green><click:open_url:'https://store.bozokits.net'>store.bozokits.net</click>"
     - ' '
     - ' '
 messages:
+  join-title: '<gradient:#12c2e9:#C471ED:#f64f59><bold>BOZO KITS</gradient>'
+  join-subtitle: '<gray>Welcome to our server!'
+  join-motd:
+    - ' '
+    - ' '
+    - '<gradient:#12c2e9:#C471ED:#f64f59><bold>BOZO KITS</gradient>'
+    - '         <color:#f64f59>Welcome <player>!'
+    - ' '
+    - '         <gray>Type /help for help'
+    - ' '
+    - ' '
   first-join-message: '<gray>[<green>✔<gray>] <player> <gold>#<unique-players>'
   join-message: '<gray>[<green>✔<gray>] <player>'
   leave-message: '<gray>[<red>❌<gray>] <player>'
@@ -182,10 +193,10 @@ messages:
   keyall-start: '<gray>You have started a <green>daily crate keyall<gray>. <green>[7min] (~14 min)'
   plugins: '<white>Plugins (5): <green>Mate<white>, <green>You<white>, <green>An<white>, <green>Actual<white>, <green>Bozo'
   kill-player:
-  - '<green>You received a bozo coin for killing <white><victim>'
-  - '<gray>Put it in the bank to keep it safe <white>/shop'
+    - '<green>You received a bozo coin for killing <white><victim>'
+    - '<gray>Put it in the bank to keep it safe <white>/shop'
   daily-reward-shout: '<yellow>☀ <light_purple><player> <green><bold>claimed their daily reward!</bold> <gray>Type /daily'
-  daily-reward: '<white>[<gradient:#12c2e9:#f64f59><bold>BOZO KITS</gradient></bold>] <green><bold>You have claimed your daily reward!'
+  daily-reward: '<white>[<gradient:#12c2e9:#C471ED:#f64f59><bold>BOZO KITS</gradient>] <green><bold>You have claimed your daily reward!'
   report:
     - ' '
     - '<color:#5865F2><bold>Your report has been sent to the staff:'
@@ -194,7 +205,10 @@ messages:
     - '<color:#5865F2>You can submit another report in <green>15min.'
     - ' '
   on-cooldown: '<gray>You can''t do this until another <green><cooldown></green>.'
-  eventdied: '<red><bold>YOU DIED!</bold></red>\n<gray>Type /event leave to exit!'
-  eventyoukilled: '<red><bold>YOU KILLED</bold></red>\n<dark_red>☠ <victim> ☠'
-  eventwin: '<gold><bold>VICTORY!\n</bold><gray>Enjoy your prizes!'
+  eventdied: '<red><bold>YOU DIED!</bold></red>'
+  eventdiedsub: '<gray>Type /event leave to exit!'
+  eventyoukilled: '<red><bold>YOU KILLED</bold></red>'
+  eventyoukilledsub: '<dark_red>☠ <victim> ☠'
+  eventwin: '<gold><bold>VICTORY!'
+  eventwinsub: '<gray>Enjoy your prizes!'
   boosting: '\🔥 **<player>** used /booster 🔥🔥🔥🔥🔥'

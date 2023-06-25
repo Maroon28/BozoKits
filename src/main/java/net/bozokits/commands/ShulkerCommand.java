@@ -14,7 +14,7 @@ public class ShulkerCommand implements CommandExecutor {
         if (!(commandSender instanceof Player player)) {
             return true;
         }
-        CommandUtils.runAsConsole("warp shulkerroom" + CommandUtils.getRandomNumber(1, 15) + " " + player.getName());
+        CommandUtils.runAsConsole("warp shulkerwarp" + CommandUtils.getRandomNumber(1, 15) + " " + player.getName());
         player.sendMessage(MessageUtils.getMessage("shulker-room"));
         return false;
     }

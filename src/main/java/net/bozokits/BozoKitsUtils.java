@@ -22,6 +22,7 @@ public final class BozoKitsUtils extends JavaPlugin {
     @Override
     public void onEnable() {
         registerAllCommands();
+        saveDefaultConfig();
         getServer().getPluginManager().registerEvents(new PlayerListener(), this);
         startAnnouncements();
     }
@@ -56,6 +57,7 @@ public final class BozoKitsUtils extends JavaPlugin {
         getCommand("freerank").setExecutor(new FreeRankCommand());
         getCommand("luckydip").setExecutor(new LuckyDipCommand());
         getCommand("boosting").setExecutor(new BoostingCommand());
+        getCommand("report").setExecutor(new ReportCommand());
     }
     private void registerDiscordBroadcastCommands() {
         String[] keys = new String[]{"discordboughtlegendarycrate", "discordlegendarycrate", "discordbozocrate"};

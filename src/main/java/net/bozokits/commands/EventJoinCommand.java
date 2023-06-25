@@ -32,6 +32,7 @@ public class EventJoinCommand implements CommandExecutor {
                 broadcastList();
             }
         }
+        broadcastList();
         return true;
     }
 
@@ -40,7 +41,7 @@ public class EventJoinCommand implements CommandExecutor {
         String message = BozoKitsUtils.getInstance().getConfig().getString("event-join");
         message = message.replace("<color>", color);
         List<String> lines = List.of(" ", " ", message, " ", " ");
-        for (String line:  lines) {
+        for (String line: lines) {
             Bukkit.broadcast(MessageUtils.getMiniMessage().deserialize(line));
         }
     }

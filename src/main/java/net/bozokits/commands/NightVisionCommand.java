@@ -14,7 +14,7 @@ public class NightVisionCommand implements CommandExecutor {
         if (!(commandSender instanceof Player player)) {
             return true;
         }
-        player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, PotionEffect.INFINITE_DURATION, 1));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 1000000, 1));
         return true;
     }
 }

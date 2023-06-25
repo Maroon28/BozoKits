@@ -6,6 +6,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -28,8 +29,8 @@ public class ShoutCommand implements CommandExecutor {
             commandSender.sendMessage(Component.text("Must provide content to broadcast!", NamedTextColor.RED));
             return true;
         }
-        String content = String.join(" ", args);
-        CommandUtils.shout(content, key);
+        String content = ChatColor.translateAlternateColorCodes('&', String.join(" ", args));
+        CommandUtils.shout(content, key.replace("new", ""));
         return true;
     }
 

@@ -30,7 +30,7 @@ public class ShopCommand implements CommandExecutor {
     }
 
     private void openShop() {
-        String cmd = "/shopkeepers remote " + shopNumber + " " + player.getName();
+        String cmd = "shopkeepers remote " + shopNumber + " " + player.getName();
         CommandUtils.runAsConsole(cmd);
         player.sendMessage(Component.text("You opened the " + shopName + " Shop!", NamedTextColor.GREEN));
     }

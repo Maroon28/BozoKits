@@ -37,7 +37,7 @@ public class CommandUtils {
     public static String getRandom(String placeholder) {
         var randomArgs = placeholder.split("-");
         int min = Integer.parseInt(randomArgs[1]);
-        int max = Integer.parseInt(randomArgs[2]);
+        int max = Integer.parseInt(randomArgs[2].replace(">", ""));
         int randomNumber = getRandomNumber(min, max);
         placeholder = placeholder.replace("<random-" + min + "-" + max + ">", String.valueOf(randomNumber));
         return placeholder;
@@ -48,8 +48,9 @@ public class CommandUtils {
     }
 
     public static void shout(String content, String key) {
-        for (Player player : Bukkit.getOnlinePlayers()) {
-            MessageUtils.sendMessageList(player, key + "-command", Placeholder.component("content", Component.text(content)));
+        var lines = MessageUtils.getMessageList(key + "-command", Placeholder.component("content", Component.text(content)));
+        for (Component line : lines) {
+            Bukkit.broadcast(line);
         }
     }
 

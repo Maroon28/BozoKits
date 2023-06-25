@@ -25,7 +25,7 @@ public class DailyRewardCommand implements CommandExecutor {
         }
         String content = getMiniMessage().serialize(getMessage("daily-reward-shout", Placeholder.component("player", player.name())));
         player.sendMessage(getMessage("daily-reward"));
-        CommandUtils.runAsConsole("crazycrate give phyiscal Daily 1 " + player.getName());
+        CommandUtils.runAsConsole("crazycrate give physical Daily 1 " + player.getName());
         CommandUtils.shout(content, "shoutsmallol");
         CommandUtils.setCooldown(player, command.getName(), 60 * 60 * 24);
         return false;

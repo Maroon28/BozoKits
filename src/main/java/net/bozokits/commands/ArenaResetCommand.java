@@ -19,7 +19,7 @@ public class ArenaResetCommand implements CommandExecutor {
             resetArena("8-block-stone");
             resetArena("2-block-sandstone");
             resetArena("air-arena");
-            CommandUtils.shout("The arena has been reset!\n<dark_red>All players underground have been teleported", "shout");
+            CommandUtils.shout("The arena has been reset!\n§r§4All players underground have been teleported", "shout");
         }, 100);
         return false;
     }

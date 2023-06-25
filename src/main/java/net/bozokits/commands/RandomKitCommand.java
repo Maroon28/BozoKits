@@ -4,6 +4,7 @@ import net.bozokits.utils.CommandUtils;
 import net.bozokits.utils.MessageUtils;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -18,6 +19,11 @@ public class RandomKitCommand implements CommandExecutor {
         }
         if (!player.hasPermission("bozokits.randomkit")) {
             player.sendMessage(MessageUtils.getMessage("no-permission"));
+            return true;
+        }
+        Player target = Bukkit.getPlayer(strings[0]);
+        if (target == null) {
+            player.sendMessage("Invalid player");
             return true;
         }
         CommandUtils.runAsConsole("kit " + CommandUtils.getRandomNumber(1, 50) + " " + player.getName());

@@ -16,7 +16,7 @@ import java.util.List;
 
 public class KeyAllCommand implements TabExecutor {
     List<String> OPTION = List.of("daily");
-    private int timeLeft = 420; // 7 minutes (7 * 60 seconds)
+    private int timeLeft = 14 * 60; // 14 minutes (14 * 60 seconds)
     private BukkitRunnable countdownTask;
     private final DecimalFormat decimalFormat = new DecimalFormat("#0.0");
 
@@ -37,12 +37,14 @@ public class KeyAllCommand implements TabExecutor {
         countdownTask = new BukkitRunnable() {
             @Override
             public void run() {
-                if (timeLeft > 0) {
+                if (timeLeft > 0 && timeLeft <= 7 * 60) {
                     if (timeLeft >= 60) {
                         double minutes = timeLeft / 60.0;
-                        CommandUtils.shout("KEY ALL IN " + formatMinutes(minutes), "shout");
+                        if (minutes == (int) minutes || minutes % 0.5 == 0) {
+                            CommandUtils.shout("KEY ALL IN §f§l" + formatMinutes(minutes), "shout");
+                        }
                     } else if (timeLeft == 30 || timeLeft == 10 || timeLeft <= 3) {
-                        CommandUtils.shout("KEY ALL IN " + timeLeft + " SECONDS", "shout");
+                        CommandUtils.shout("KEY ALL IN §f§l" + timeLeft + " SECONDS", "shout");
                     }
                     timeLeft--;
                 } else {

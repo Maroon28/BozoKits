@@ -41,13 +41,12 @@ public class EventTitleCommand implements CommandExecutor {
         return true;
     }
     private void sendTitle(Player player, Player victim) {
-        String[] text = MessageUtils.getMessageRaw(key).split("\n");
-        Component main = MessageUtils.getMiniMessage().deserialize(text[0]);
+        Component main = MessageUtils.getMessage(key);
         Component subtitle;
         if (victim != null) {
-            subtitle = MessageUtils.getMiniMessage().deserialize(text[1], Placeholder.component("victim", victim.name()));
+            subtitle = MessageUtils.getMiniMessage().deserialize(MessageUtils.getMessageRaw(key + "sub"), Placeholder.component("victim", victim.name()));
         } else {
-            subtitle = MessageUtils.getMiniMessage().deserialize(text[1]);
+            subtitle = MessageUtils.getMiniMessage().deserialize(MessageUtils.getMessageRaw(key + "sub"));
         }
         Title title = Title.title(main, subtitle);
         player.showTitle(title);

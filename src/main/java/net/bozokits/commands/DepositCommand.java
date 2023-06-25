@@ -1,5 +1,6 @@
 package net.bozokits.commands;
 
+import net.bozokits.utils.MessageUtils;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -25,7 +26,11 @@ public class DepositCommand implements TabExecutor {
             return true;
         }
         if (args[0].equals("all") || args[0].equals("hand")) {
-            player.performCommand("sell " + args[0]);
+            if (player.hasPermission("bozokits.deposit" + args[0])) {
+                player.performCommand("sell " + args[0]);
+            } else {
+                player.sendMessage(MessageUtils.getMessage("no-permission"));
+            }
         } else {
             player.sendMessage(errorText);
         }

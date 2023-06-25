@@ -1,9 +1,14 @@
 name: BozoKitsUtils
 version: '${project.version}'
 main: net.bozokits.BozoKitsUtils
+authors: [ Maroon28 ]
+description: Bozokits additions replacement
+website: bozokits.net
 api-version: 1.19
 commands:
   ip:
+    aliases:
+      - serverip
     description: Server ip message
   help:
     description: help command
@@ -47,6 +52,10 @@ commands:
     description: afk pool leave
   afkpool6969join:
     description: afk pool join
+  anvil-reset:
+    description: resets anvils
+  deposit:
+    description: deposits
   afk:
     description: afk warp command
   rngtest:
@@ -55,6 +64,8 @@ commands:
   arena-reset:
     description: arena reset
     permission: poglords.resetarena
+  report:
+    description: reports someone
   daily:
     description: daily reward
   randomkit:

@@ -2,7 +2,9 @@ package net.bozokits.listeners;
 
 import net.bozokits.BozoKitsUtils;
 import net.bozokits.utils.CommandUtils;
+import net.bozokits.utils.MessageUtils;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.title.Title;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -33,13 +35,15 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         Component message;
-        if (event.getPlayer().hasPlayedBefore()) {
+        if (!event.getPlayer().hasPlayedBefore()) {
             totalPlayerCount = getTotalCount() + 1;
             message = getMessage("first-join-message", component("player", event.getPlayer().name()), component("unique-players", Component.text(totalPlayerCount)));
         } else {
             message = getMessage("join-message", component("player", event.getPlayer().name()));
         }
+        MessageUtils.sendMessageList(event.getPlayer(), "messages.join-motd", component("player", event.getPlayer().name()));
         event.joinMessage(message);
+        event.getPlayer().showTitle(Title.title(getMessage("join-title"), getMessage("join-subtitle")));
     }
 
     @EventHandler
@@ -55,8 +59,20 @@ public class PlayerListener implements Listener {
         Player killer = victim.getKiller();
         if (killer == null)
             return;
-        CommandUtils.runCommands("on-kill", killer);
+        if (victim == killer)
+            return;
+        Bukkit.getScheduler().runTaskLater(BozoKitsUtils.getInstance(), () -> {
+            CommandUtils.runCommands("on-kill", killer);
+            MessageUtils.sendMessageList(killer, "messages.kill-player", component("victim", victim.name()));
+        }, 10);
         cooldowns.remove(victim.getUniqueId());
+    }
+
+    @EventHandler
+    public void onPlayerDeath(PlayerDeathEvent event) {
+        Bukkit.getScheduler().runTaskLater(BozoKitsUtils.getInstance(), () -> {
+            CommandUtils.runCommands("on-death", event.getPlayer());
+        }, 10);
     }
     @EventHandler
     public void onPlayerCommandPreprocess(PlayerCommandPreprocessEvent event) {
@@ -65,10 +81,6 @@ public class PlayerListener implements Listener {
             event.setCancelled(true);
             event.getPlayer().sendMessage(getMessage("plugins"));
         }
-    }
-    @EventHandler
-    public void onPlayerDeath(PlayerDeathEvent event) {
-        CommandUtils.runCommands("on-death", event.getPlayer());
     }
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
@@ -87,17 +99,17 @@ public class PlayerListener implements Listener {
         String itemName = itemMeta.getDisplayName();
 
         // Levitation Crystal with cooldown
-        if (itemName.equals("Levitation Crystal")) {
+        if (itemName.contains("Levitation Crystal")) {
             handleLevitationCrystal(player, clickedItem);
             event.setCancelled(true);
         }
         // Speed & Jump
-        else if (itemName.equals("Speed & Jump")) {
+        else if (itemName.contains("Speed & Jump")) {
             handleSpeedAndJump(player, clickedItem);
             event.setCancelled(true);
         }
         // Extra Hearts
-        else if (itemName.equals("Extra Hearts")) {
+        else if (itemName.contains("Extra Hearts")) {
             handleExtraHearts(player, clickedItem);
             event.setCancelled(true);
         }
