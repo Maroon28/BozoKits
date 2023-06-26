@@ -11,10 +11,7 @@ public class AnvilResetCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
         if (commandSender.hasPermission("poglords.anvilreset")) {
-            if (!(commandSender instanceof Player player)) {
-                return true;
-            }
-            CommandUtils.runCommands("anvil-reset", player);
+            CommandUtils.runCommands("anvil-reset");
             return true;
         }
         return true;

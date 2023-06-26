@@ -35,20 +35,19 @@ public class KeyAllCommand implements TabExecutor {
             return true;
         }
         countdownTask = new BukkitRunnable() {
-            @Override
             public void run() {
-                if (timeLeft > 0 && timeLeft <= 7 * 60) {
+                if (timeLeft > 0) {
                     if (timeLeft >= 60) {
-                        double minutes = timeLeft / 60.0;
+                        double minutes = timeLeft / 120.0;
                         if (minutes == (int) minutes || minutes % 0.5 == 0) {
-                            CommandUtils.shout("KEY ALL IN §f§l" + formatMinutes(minutes), "shout");
+                            if (minutes >= 1.0)
+                                CommandUtils.shout("KEY ALL IN §f§l" + decimalFormat.format(minutes) + " MINUTES!", "shout");
                         }
                     } else if (timeLeft == 30 || timeLeft == 10 || timeLeft <= 3) {
-                        CommandUtils.shout("KEY ALL IN §f§l" + timeLeft + " SECONDS", "shout");
+                        CommandUtils.shout("KEY ALL IN §f§l" + timeLeft + " SECONDS!", "shout");
                     }
                     timeLeft--;
                 } else {
-                    CommandUtils.runAsConsole("crazycrate giveall p Daily 1");
                     countdownTask.cancel();
                     countdownTask = null;
                 }
@@ -58,10 +57,6 @@ public class KeyAllCommand implements TabExecutor {
         countdownTask.runTaskTimer(BozoKitsUtils.getInstance(), 0L, 20L); // Run every second (20 ticks)
         sender.sendMessage(MessageUtils.getMessage("keyall-start"));
         return true;
-    }
-
-    private String formatMinutes(double minutes) {
-        return decimalFormat.format(minutes) + " MINUTES";
     }
 
     @Override

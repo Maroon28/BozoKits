@@ -22,11 +22,11 @@ public class ReportCommand implements CommandExecutor {
         }
         if (CommandUtils.hasCooldown(player, command.getName())) {
             long timeLeft = CommandUtils.getTimeLeft(player, command.getName());
-            player.sendMessage(MessageUtils.getMessage("on-cooldown", Placeholder.component("cooldown", Component.text(timeLeft))));
+            player.sendMessage(MessageUtils.getMessage("on-cooldown", Placeholder.component("cooldown", Component.text(CommandUtils.formatTime(timeLeft)))));
             return true;
         }
-        MessageUtils.sendMessageList(player, "messages.report");
         String report = String.join(" ", args);
+        MessageUtils.sendMessageList(player, "messages.report", Placeholder.component("content", Component.text(report)));
         CommandUtils.runAsConsole("discordbroadcast reports <@&1056806576964509719> **" + player.getName() + "**: \"`" + report +  "`\"");
         CommandUtils.setCooldown(player, command.getName(), 15 * 60); // 15 min
         return true;

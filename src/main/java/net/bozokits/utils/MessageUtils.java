@@ -5,6 +5,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -40,6 +41,7 @@ public class MessageUtils {
             player.sendMessage(MINI_MESSAGE.deserialize(msg));
         }
     }
+
     public static void sendMessageList(Player player, String listKey, TagResolver.Single... placeholders) {
         for (String msg : getMessageList(listKey)) {
             player.sendMessage(MINI_MESSAGE.deserialize(msg, placeholders));

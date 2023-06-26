@@ -1,4 +1,4 @@
-announcement-interval: 3600
+announcement-interval: 60
 announcements:
   1:
     - ' '
@@ -175,10 +175,13 @@ text-commands:
 messages:
   join-title: '<gradient:#12c2e9:#C471ED:#f64f59><bold>BOZO KITS</gradient>'
   join-subtitle: '<gray>Welcome to our server!'
+  levitation: '<green><bold>You have been <light_purple>levitated!'
+  speed-and-jump: '<green>You have been given <aqua>Speed & Jump Boost!'
+  extra-hearts: '<green>You have been given 4x <red><bold>Extra Hearts!'
   join-motd:
     - ' '
     - ' '
-    - '<gradient:#12c2e9:#C471ED:#f64f59><bold>BOZO KITS</gradient>'
+    - '      <gradient:#12c2e9:#C471ED:#f64f59><bold>BOZO KITS</gradient>'
     - '         <color:#f64f59>Welcome <player>!'
     - ' '
     - '         <gray>Type /help for help'

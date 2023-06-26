@@ -1,13 +1,15 @@
 package net.bozokits.utils;
 
+import net.bozokits.BozoKitsUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
+import java.util.Set;
 
 public class MessageAnnounceTask implements Runnable {
     private int index = 1;
-    private final List<String> ANNOUNCEMENTS = MessageUtils.getMessageList("announcements");
+    private final @NotNull Set<String> ANNOUNCEMENTS = BozoKitsUtils.getInstance().getConfig().getConfigurationSection("announcements").getKeys(false);
     @Override
     public void run() {
         for (Player p: Bukkit.getOnlinePlayers()) {
@@ -23,4 +25,5 @@ public class MessageAnnounceTask implements Runnable {
     private String getListAnnouncementKey() {
         return "announcements." + index;
     }
+
 }

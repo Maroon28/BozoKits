@@ -31,7 +31,7 @@ public class AfkCommand implements CommandExecutor {
         return true;
     }
     private void sendTitle(Player player) {
-        Component main = MessageUtils.getMiniMessage().deserialize("<gradient:#12c2e9:#f64f59><bold>BOZO KITS</gradient>");
+        Component main = MessageUtils.getMiniMessage().deserialize("<gradient:#12c2e9:#C471ED:#f64f59><bold>BOZO KITS</gradient>");
         NamedTextColor subColor = key.contains("leave") ? NamedTextColor.GREEN : NamedTextColor.RED;
         String subtitleText = key.contains("leave") ? "You are no longer AFK!" : "You are now AFK!";
         Title title = Title.title(main, Component.text(subtitleText, subColor));

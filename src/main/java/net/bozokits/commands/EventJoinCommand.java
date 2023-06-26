@@ -31,8 +31,9 @@ public class EventJoinCommand implements CommandExecutor {
             if (randomValue <= 0.2) {
                 broadcastList();
             }
+        } else {
+            broadcastList();
         }
-        broadcastList();
         return true;
     }
 

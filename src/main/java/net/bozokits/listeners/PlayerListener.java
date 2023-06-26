@@ -48,7 +48,7 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void onLeave(PlayerQuitEvent event) {
-        Component message = getMessage("quit-message", component("player", event.getPlayer().name()));
+        Component message = getMessage("leave-message", component("player", event.getPlayer().name()));
         event.quitMessage(message);
         cooldowns.remove(event.getPlayer().getUniqueId());
     }
@@ -117,34 +117,54 @@ public class PlayerListener implements Listener {
 
     private void handleLevitationCrystal(Player player, ItemStack item) {
         if (hasCooldown(player)) {
-            player.sendMessage("Item is on cooldown. Please wait.");
+            player.sendMessage("§cPlease wait another " +  (getTimeLeft(player) / 1000) + "s!");
             return;
         }
-
+        player.sendMessage(getMessage("levitation"));
         player.addPotionEffect(new PotionEffect(PotionEffectType.LEVITATION, 4 * 20, 2));
         setCooldown(player);
-        item.setAmount(item.getAmount() - 1);
-        player.getInventory().setItemInMainHand(item.getAmount() > 0 ? item : null);
+        removeItem(player, item);
     }
 
     private void handleSpeedAndJump(Player player, ItemStack item) {
+        player.sendMessage(getMessage("speed-and-jump"));
         player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 5 * 20, 4));
         player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 5 * 20, 2));
-        item.setAmount(item.getAmount() - 1);
-        player.getInventory().setItemInMainHand(item.getAmount() > 0 ? item : null);
+        removeItem(player, item);
     }
 
     private void handleExtraHearts(Player player, ItemStack item) {
+        player.sendMessage(getMessage("extra-hearts"));
         player.addPotionEffect(new PotionEffect(PotionEffectType.HEALTH_BOOST, Integer.MAX_VALUE, 0));
-        item.setAmount(item.getAmount() - 1);
-        player.getInventory().setItemInMainHand(item.getAmount() > 0 ? item : null);
+        removeItem(player, item);
+    }
+
+    private static void removeItem(Player player, ItemStack item) {
+        if (player.getInventory().getItemInMainHand().isSimilar(item)) {
+            item.setAmount(item.getAmount() - 1);
+            player.getInventory().setItemInMainHand(item.getAmount() > 0 ? item : null);
+        } else if (player.getInventory().getItemInOffHand().isSimilar(item)) {
+            item.setAmount(item.getAmount() - 1);
+            player.getInventory().setItemInOffHand(item.getAmount() > 0 ? item : null);
+        }
+    }
+
+    private long getTimeLeft(Player player) {
+        // 10 seconds in milliseconds
+        long cooldownDuration = 10 * 1000;
+        if (cooldowns.containsKey(player.getUniqueId())) {
+            long cooldownTime = cooldowns.get(player.getUniqueId());
+            long currentTime = System.currentTimeMillis();
+            long timeLeft = cooldownTime + cooldownDuration - currentTime;
+            return Math.max(timeLeft, 0);
+        }
+        return 0;
     }
 
     private boolean hasCooldown(Player player) {
-        // 10 seconds in milliseconds
-        long cooldownDuration = 10 * 1000;
-        return cooldowns.containsKey(player.getUniqueId()) && System.currentTimeMillis() - cooldowns.get(player) < cooldownDuration;
+        return getTimeLeft(player) > 0;
     }
+
 
     private void setCooldown(Player player) {
         cooldowns.put(player.getUniqueId(), System.currentTimeMillis());

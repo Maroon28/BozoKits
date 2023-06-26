@@ -20,7 +20,7 @@ public class DailyRewardCommand implements CommandExecutor {
         }
         if (CommandUtils.hasCooldown(player, command.getName())) {
             long timeLeft = CommandUtils.getTimeLeft(player, command.getName());
-            player.sendMessage(getMessage("on-cooldown", Placeholder.component("cooldown", Component.text(timeLeft))));
+            player.sendMessage(getMessage("on-cooldown", Placeholder.component("cooldown", Component.text(CommandUtils.formatTime(timeLeft)))));
             return true;
         }
         String content = getMiniMessage().serialize(getMessage("daily-reward-shout", Placeholder.component("player", player.name())));

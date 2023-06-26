@@ -21,6 +21,13 @@ public class CommandUtils {
             runAsConsole(cmd);
         }
     }
+    public static void runCommands(String key) {
+        List<String> commands = BozoKitsUtils.getInstance().getConfig().getStringList("commands-" + key);
+        for (String cmd: commands) {
+            cmd = setRandom(cmd);
+            runAsConsole(cmd);
+        }
+    }
 
     public static String setRandom(String cmd) {
         if (!cmd.contains("random")) {
@@ -72,6 +79,40 @@ public class CommandUtils {
         return Math.max(0, timeLeft);
     }
 
+    public static String formatTime(long milliseconds) {
+        if (milliseconds < 0) {
+            return "0s";
+        }
+
+        long seconds = milliseconds / 1000;
+        long minutes = seconds / 60;
+        long hours = minutes / 60;
+        long days = hours / 24;
+
+        StringBuilder sb = new StringBuilder();
+
+        if (days > 0) {
+            sb.append(days);
+            sb.append("d ");
+            hours %= 24;
+        }
+        if (hours > 0) {
+            sb.append(hours);
+            sb.append("hr ");
+            minutes %= 60;
+        }
+        if (minutes > 0) {
+            sb.append(minutes);
+            sb.append("min ");
+            seconds %= 60;
+        }
+        if (seconds > 0 || sb.length() == 0) {
+            sb.append(seconds);
+            sb.append("s");
+        }
+
+        return sb.toString().trim();
+    }
     public static boolean hasCooldown(Player player, String command) {
         return getTimeLeft(player, command) > 0;
     }
