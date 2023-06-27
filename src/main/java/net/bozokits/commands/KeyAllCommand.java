@@ -3,6 +3,7 @@ package net.bozokits.commands;
 import net.bozokits.BozoKitsUtils;
 import net.bozokits.utils.CommandUtils;
 import net.bozokits.utils.MessageUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
@@ -48,6 +49,7 @@ public class KeyAllCommand implements TabExecutor {
                     }
                     timeLeft--;
                 } else {
+                    timeLeft = 14 * 60; // Set the time back.
                     countdownTask.cancel();
                     countdownTask = null;
                 }
