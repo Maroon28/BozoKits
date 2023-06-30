@@ -7,7 +7,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -18,15 +17,11 @@ import java.util.List;
 public class KeyAllCommand implements TabExecutor {
     List<String> OPTION = List.of("daily");
     private int timeLeft = 14 * 60; // 14 minutes (14 * 60 seconds)
-    private BukkitRunnable countdownTask;
     private final DecimalFormat decimalFormat = new DecimalFormat("#0.0");
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
-        if (countdownTask != null) {
-            sender.sendMessage("Countdown is already running.");
-            return true;
-        }
+
         if (!sender.hasPermission("poglords.keyall.daily")) {
             sender.sendMessage(MessageUtils.getMessage("no-permission"));
             return true;
@@ -35,8 +30,7 @@ public class KeyAllCommand implements TabExecutor {
             sender.sendMessage("Please do /keyall daily!");
             return true;
         }
-        countdownTask = new BukkitRunnable() {
-            public void run() {
+        Bukkit.getServer().getScheduler().runTaskTimer(BozoKitsUtils.getInstance(), task -> {
                 if (timeLeft > 0) {
                     if (timeLeft >= 60) {
                         double minutes = timeLeft / 120.0;
@@ -50,20 +44,18 @@ public class KeyAllCommand implements TabExecutor {
                     timeLeft--;
                 } else {
                     timeLeft = 14 * 60; // Set the time back.
-                    countdownTask.cancel();
-                    countdownTask = null;
+                    task.cancel();
+                    CommandUtils.runAsConsole("cc giveall p daily 1");
                 }
-            }
-        };
+            }, 0, 20L);
 
-        countdownTask.runTaskTimer(BozoKitsUtils.getInstance(), 0L, 20L); // Run every second (20 ticks)
         sender.sendMessage(MessageUtils.getMessage("keyall-start"));
         return true;
     }
 
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
-        if (args.length < 1) {
+        if (args.length == 0) {
             return OPTION;
         }
         return Collections.emptyList();
