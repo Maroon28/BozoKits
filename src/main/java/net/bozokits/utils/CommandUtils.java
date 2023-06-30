@@ -60,6 +60,12 @@ public class CommandUtils {
             Bukkit.broadcast(line);
         }
     }
+    public static void shout(Component content, String key) {
+        var lines = MessageUtils.getMessageList(key + "-command", Placeholder.component("content", content));
+        for (Component line : lines) {
+            Bukkit.broadcast(line);
+        }
+    }
 
     public static void runAsConsole(String command) {
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
