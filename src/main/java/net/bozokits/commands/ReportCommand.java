@@ -27,7 +27,7 @@ public class ReportCommand implements CommandExecutor {
         }
         String report = String.join(" ", args);
         MessageUtils.sendMessageList(player, "messages.report", Placeholder.component("content", Component.text(report)));
-        CommandUtils.runAsConsole("discordbroadcast reports <@&1056806576964509719> **" + player.getName() + "**: \"`" + report +  "`\"");
+        CommandUtils.runAsConsole("discordbroadcast reports **" + player.getName() + "**: \"`" + report +  "`\"");
         CommandUtils.setCooldown(player, command.getName(), 15 * 60); // 15 min
         return true;
     }

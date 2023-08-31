@@ -30,6 +30,11 @@ public class KeyAllCommand implements TabExecutor {
             sender.sendMessage("Please do /keyall daily!");
             return true;
         }
+        if (!args[0].equalsIgnoreCase("daily")) {
+            sender.sendMessage("Please do /keyall daily!");
+            return true;
+        }
+        sender.sendMessage(MessageUtils.getMessage("keyall-start"));
         Bukkit.getServer().getScheduler().runTaskTimer(BozoKitsUtils.getInstance(), task -> {
                 if (timeLeft > 0) {
                     if (timeLeft >= 60) {
@@ -43,13 +48,12 @@ public class KeyAllCommand implements TabExecutor {
                     }
                     timeLeft--;
                 } else {
-                    timeLeft = 14 * 60; // Set the time back.
-                    task.cancel();
                     CommandUtils.runAsConsole("cc giveall p daily 1");
+                    task.cancel();
                 }
             }, 0, 20L);
+        timeLeft = 14 * 60; // Set the time back.
 
-        sender.sendMessage(MessageUtils.getMessage("keyall-start"));
         return true;
     }
 

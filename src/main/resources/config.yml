@@ -47,6 +47,11 @@ commands-anvil-reset:
   - 'setblock -72 158 10 anvil[facing=north]'
   - 'setblock -72 158 -10 anvil[facing=north]'
   - 'setblock -69 158 -14 anvil[facing=east]'
+commands-arena-reset:
+  - 'mrl reset 7-block-ores -s'
+  - 'mrl reset 8-block-stone -s'
+  - 'mrl reset 2-block-sandstone -s'
+  - 'mrl reset air-arena -s'
 shout-command:
   - ' '
   - ' '

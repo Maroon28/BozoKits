@@ -66,6 +66,24 @@ public class CommandUtils {
             Bukkit.broadcast(line);
         }
     }
+    public static void shout(List<Component> contents, String key) {
+        var lines = MessageUtils.getMessageList(key + "-command", Placeholder.component("content", contents.get(0)));
+        contents.remove(0);
+
+        int insertIndex = getInsertIndex(key) + 1;
+        lines.addAll(insertIndex, contents);
+
+        for (Component line : lines) {
+            Bukkit.broadcast(line);
+        }
+    }
+
+    private static int getInsertIndex(String key) {
+        if (key.contains("small"))
+            return 0;
+        else
+            return 2;
+    }
 
     public static void runAsConsole(String command) {
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);

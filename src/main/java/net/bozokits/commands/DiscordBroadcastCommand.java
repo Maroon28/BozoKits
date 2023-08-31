@@ -30,6 +30,6 @@ public class DiscordBroadcastCommand implements CommandExecutor {
     }
 
     private void broadcast(String text) {
-        CommandUtils.runAsConsole("discoradbroadcast keys " + text);
+        CommandUtils.runAsConsole("discordbroadcast keys " + text);
     }
 }
